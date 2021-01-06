@@ -71,11 +71,13 @@
         </table>
     </div>
     <div style="display: flex; justify-content: center;">
-        <button class="btn btn-success btn-lg" type="button" onclick="enterMember()" >Enter member</button>
+        <button class="btn btn-success btn-lg" type="button" onclick="enterMember()">Enter member</button>
     </div>
 
-    <p style="text-align: center;color:darkgreen;display: none;font-size: 2em; margin-top: 50px;" id="Member_Accepted" >Member entered in the period</p>
-    <p style="text-align: center;color:darkred;display: none;font-size: 2em; margin-top: 50px;" id="Member_Rejected">Member can't be entered because memebership ended</p>
+    <p style="text-align: center;color:darkgreen;display: none;font-size: 2em; margin-top: 50px;" id="Member_Accepted">
+        Member entered in the period</p>
+    <p style="text-align: center;color:darkred;display: none;font-size: 2em; margin-top: 50px;" id="Member_Rejected">
+        Member can't be entered because memebership ended</p>
 
     <script type="text/javascript">
 
@@ -87,49 +89,77 @@
                 Gender: "Male",
                 Period: "8:30 am",
                 Status: "Not Active"
+            },
+            {
+                ID: "17108655",
+                Name: "Mohammed",
+                Membership_type: "Semestrly",
+                Gender: "Male",
+                Period: "10:30 am",
+                Status: "Active"
             }
         ];
 
         function checkID() {
 
+            var b = document.getElementById('Member_Rejected');
+            b.style.display = 'none';
+            var b = document.getElementById('Member_Accepted');
+            b.style.display = 'none';
             var ID = document.getElementById('inputID').value;
 
             if (ID !== "") {
                 var table = document.getElementById('tbody');
-                var record = dict[0];
-                tr = document.createElement('tr');
-                var Status_color;
-                if (record["Status"] == "Not Active")
-                    Status_color = "rgb(180,0,0);";
-                else
-                    Status_color = "rgb(0,100,0);"
-                tr.innerHTML =
-                    "<th scope='row'>" + record['ID'] +
-                    "</th><td>" + record['Name'] +
-                    "</td><td>" + record['Membership_type'] +
-                    "</td><td>" + record['Gender'] +
-                    "</td><td>" + record['Period'] +
-                    "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
-                table.appendChild(tr);
+                for (let i = 0; i < dict.length; i++) {
+                    var record = dict[i];
+                    if (record["ID"] == ID) {
+                        tr = document.createElement('tr');
+                        var Status_color;
+                        if (record["Status"] == "Not Active")
+                            Status_color = "rgb(180,0,0);";
+                        else
+                            Status_color = "rgb(0,100,0);"
+                        tr.innerHTML =
+                            "<th scope='row'>" + record['ID'] +
+                            "</th><td>" + record['Name'] +
+                            "</td><td>" + record['Membership_type'] +
+                            "</td><td>" + record['Gender'] +
+                            "</td><td>" + record['Period'] +
+                            "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
+                        var list = document.getElementById("tbody");
+                        table.removeChild(list.childNodes[0]);
+                        table.appendChild(tr);
+                    }
+
+
+                }
             }
         }
 
-        function enterMember()
-        {
-            var e = dict[0] ;
-            if(e["Status"] == "Active")
-            {
-                var b = document.getElementById('Member_Accepted') ;
-                b.style.display = 'block' ;
+        function enterMember() {
+            var ID = document.getElementById('inputID').value;
+            for (let i = 0; i < dict.length; i++) {
+                var record = dict[i];
+                if (record["ID"] == ID) {
+                    if (record["Status"] == "Active") {
+                        var b = document.getElementById('Member_Rejected');
+                        b.style.display = 'none';
+                        b = document.getElementById('Member_Accepted');
+                        b.style.display = 'block';
+                    }
+                    else if (record["Status"] == "Not Active") {
+                        var b = document.getElementById('Member_Accepted');
+                        b.style.display = 'none';
+                        b = document.getElementById('Member_Rejected');
+                        b.style.display = 'block';
+                    }
+                }
             }
-            else if(e["Status"] == "Not Active")
-            {
-                var b = document.getElementById('Member_Rejected') ;
-                b.style.display = 'block' ;
-            }
+
+
         }
 
-    
+
 
     </script>
 
