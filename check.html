@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <style>
+        nav{
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 3px 10px 17px -15px rgba(0,0,0,0.48);
+        }
+        a, a:hover{
+            color: black;
+            text-decoration: none;
+        }
+
+        .search{
+            margin:50px  0px;
+            display: flex;
+            justify-content: center;
+        }
+        .search select{
+            margin: 0px 15px ;
+        }
+        .table{
+            text-align: center; 
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="Home.html"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
+        <img src="static/AASTL.png" style="width: 100px; height: 100px;">
+        <a href="#"><img src="static/setting2.png" style="width: 80px;height: 80px;"></a>
+    </nav>
+
+
+    <div class="search">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="ID" placeholder="ID" aria-label="ID">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Check</button>
+        </form>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Membership Type</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Period</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Semesterly</td>
+                <td>Male</td>
+                <td>8:30 am</td>
+                <td> <p style="color: darkgreen; font-weight: bold;">Yes</p> </td>
+            </tr>
+
+         
+            </tbody>
+        </table>
+
+        <div style="display: flex; justify-content: center;">
+            <button class="btn btn-success btn-lg">Enter member</button>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
