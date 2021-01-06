@@ -7,29 +7,32 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <style>
-        nav{
+        nav {
             padding: 20px;
             display: flex;
             justify-content: space-between;
-            box-shadow: 3px 10px 17px -15px rgba(0,0,0,0.48);
+            box-shadow: 3px 10px 17px -15px rgba(0, 0, 0, 0.48);
         }
-        a, a:hover{
+
+        a,
+        a:hover {
             color: black;
             text-decoration: none;
         }
 
-        .search{
-            margin:50px  0px;
+        .search {
+            margin: 50px 0px;
             display: flex;
             justify-content: center;
         }
-        .search select{
-            margin: 0px 15px ;
-        }
-        .table{
-            text-align: center; 
+
+        .search select {
+            margin: 0px 15px;
         }
 
+        .table {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -45,42 +48,90 @@
 
     <div class="search">
         <form class="form-inline">
-            <input class="form-control mr-sm-2" type="ID" placeholder="ID" aria-label="ID">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Check</button>
+            <input class="form-control mr-sm-2" type="ID" placeholder="ID" id="inputID">
+            <button class="btn btn-primary my-2 my-sm-0" type="button" onclick="checkID()">Check</button>
         </form>
     </div>
 
     <div class="table-responsive">
         <table class="table table-hover">
             <thead class="thead-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Membership Type</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Period</th>
-                <th scope="col">Status</th>
-            </tr>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Membership Type</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Period</th>
+                    <th scope="col">Status</th>
+                </tr>
             </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Semesterly</td>
-                <td>Male</td>
-                <td>8:30 am</td>
-                <td> <p style="color: darkgreen; font-weight: bold;">Yes</p> </td>
-            </tr>
+            <tbody id="tbody">
 
-         
             </tbody>
         </table>
-
-        <div style="display: flex; justify-content: center;">
-            <button class="btn btn-success btn-lg">Enter member</button>
-        </div>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <button class="btn btn-success btn-lg" type="button" onclick="enterMember()" >Enter member</button>
     </div>
 
+    <p style="text-align: center;color:darkgreen;display: none;font-size: 2em; margin-top: 50px;" id="Member_Accepted" >Member entered in the period</p>
+    <p style="text-align: center;color:darkred;display: none;font-size: 2em; margin-top: 50px;" id="Member_Rejected">Member can't be entered because memebership ended</p>
+
+    <script type="text/javascript">
+
+        var dict = [
+            {
+                ID: "17108644",
+                Name: "Tarek",
+                Membership_type: "Monthly",
+                Gender: "Male",
+                Period: "8:30 am",
+                Status: "Not Active"
+            }
+        ];
+
+        function checkID() {
+
+            var ID = document.getElementById('inputID').value;
+
+            if (ID !== "") {
+                var table = document.getElementById('tbody');
+                var record = dict[0];
+                tr = document.createElement('tr');
+                var Status_color;
+                if (record["Status"] == "Not Active")
+                    Status_color = "rgb(180,0,0);";
+                else
+                    Status_color = "rgb(0,100,0);"
+                tr.innerHTML =
+                    "<th scope='row'>" + record['ID'] +
+                    "</th><td>" + record['Name'] +
+                    "</td><td>" + record['Membership_type'] +
+                    "</td><td>" + record['Gender'] +
+                    "</td><td>" + record['Period'] +
+                    "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
+                table.appendChild(tr);
+            }
+        }
+
+        function enterMember()
+        {
+            var e = dict[0] ;
+            if(e["Status"] == "Active")
+            {
+                var b = document.getElementById('Member_Accepted') ;
+                b.style.display = 'block' ;
+            }
+            else if(e["Status"] == "Not Active")
+            {
+                var b = document.getElementById('Member_Rejected') ;
+                b.style.display = 'block' ;
+            }
+        }
+
+    
+
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
