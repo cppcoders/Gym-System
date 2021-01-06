@@ -106,12 +106,16 @@
             b.style.display = 'none';
             var b = document.getElementById('Member_Accepted');
             b.style.display = 'none';
-            var ID = document.getElementById('inputID').value;
 
+            var ID = document.getElementById('inputID').value;
             if (ID !== "") {
                 var table = document.getElementById('tbody');
                 for (let i = 0; i < dict.length; i++) {
                     var record = dict[i];
+
+                    if(table.childNodes.length != 0 )
+                        table.removeChild(table.childNodes[0]);
+
                     if (record["ID"] == ID) {
                         tr = document.createElement('tr');
                         var Status_color;
@@ -126,9 +130,8 @@
                             "</td><td>" + record['Gender'] +
                             "</td><td>" + record['Period'] +
                             "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
-                        var list = document.getElementById("tbody");
-                        table.removeChild(list.childNodes[0]);
                         table.appendChild(tr);
+                        break;
                     }
 
 

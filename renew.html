@@ -152,25 +152,32 @@
         function checkID() {
 
             var ID = document.getElementById('inputID').value;
-            
-            if (ID !== "" ) {
-                var table = document.getElementById('tbody');
-                var record = dict[0];
-                tr = document.createElement('tr');
-                var Status_color;
-                if (record["Status"] == "Not Active")
-                    Status_color = "rgb(180,0,0);";
-                else
-                    Status_color = "rgb(0,100,0);"
-                tr.innerHTML =
-                    "<th scope='row'>" + record['ID'] +
-                    "</th><td>" + record['Name'] +
-                    "</td><td>" + record['Membership_type'] +
-                    "</td><td>" + record['Gender'] +
-                    "</td><td>" + record['Period'] +
-                    "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
-                table.appendChild(tr);
-            }
+            for (let i = 0; i < dict.length; i++) {
+                    var record = dict[i];
+                    var table = document.getElementById('tbody'); 
+                    
+                    if(table.childNodes.length != 0 )
+                        table.removeChild(table.childNodes[0]);
+                    if (record["ID"] == ID) {
+                        tr = document.createElement('tr');
+                        var Status_color;
+                        if (record["Status"] == "Not Active")
+                            Status_color = "rgb(180,0,0);";
+                        else
+                            Status_color = "rgb(0,100,0);"
+                        tr.innerHTML =
+                            "<th scope='row'>" + record['ID'] +
+                            "</th><td>" + record['Name'] +
+                            "</td><td>" + record['Membership_type'] +
+                            "</td><td>" + record['Gender'] +
+                            "</td><td>" + record['Period'] +
+                            "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
+                        table.appendChild(tr);
+                        break ; 
+                    }
+
+
+                }
 
 
         }
