@@ -55,7 +55,7 @@
 <body>
 
     <nav>
-        <a href="Home.html"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
+        <a href="Home"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
         <img src="static/AASTL.png" style="width: 100px; height: 100px;">
         <a href="#"><img src="static/setting2.png" style="width: 80px;height: 80px;"></a>
     </nav>
@@ -115,8 +115,8 @@
             <div class="form-roup row">
                 <div class="form-group col-12">
                     <label>Start date</label>
-                    <input class="StartDate" id="inputStartDate" name="inputStartDate"
-                        data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
+                    <input class="StartDate" id="inputStartDate" name="inputStartDate" data-date-format="mm/dd/yyyy"
+                        placeholder="mm/dd/yyyy">
                 </div>
             </div>
 
@@ -153,40 +153,39 @@
 
             var ID = document.getElementById('inputID').value;
             for (let i = 0; i < dict.length; i++) {
-                    var record = dict[i];
-                    var table = document.getElementById('tbody'); 
-                    
-                    if(table.childNodes.length != 0 )
-                        table.removeChild(table.childNodes[0]);
-                    if (record["ID"] == ID) {
-                        tr = document.createElement('tr');
-                        var Status_color;
-                        if (record["Status"] == "Not Active")
-                            Status_color = "rgb(180,0,0);";
-                        else
-                            Status_color = "rgb(0,100,0);"
-                        tr.innerHTML =
-                            "<th scope='row'>" + record['ID'] +
-                            "</th><td>" + record['Name'] +
-                            "</td><td>" + record['Membership_type'] +
-                            "</td><td>" + record['Gender'] +
-                            "</td><td>" + record['Period'] +
-                            "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
-                        table.appendChild(tr);
-                        break ; 
-                    }
+                var record = dict[i];
+                var table = document.getElementById('tbody');
 
-
+                if (table.childNodes.length != 0)
+                    table.removeChild(table.childNodes[0]);
+                if (record["ID"] == ID) {
+                    tr = document.createElement('tr');
+                    var Status_color;
+                    if (record["Status"] == "Not Active")
+                        Status_color = "rgb(180,0,0);";
+                    else
+                        Status_color = "rgb(0,100,0);"
+                    tr.innerHTML =
+                        "<th scope='row'>" + record['ID'] +
+                        "</th><td>" + record['Name'] +
+                        "</td><td>" + record['Membership_type'] +
+                        "</td><td>" + record['Gender'] +
+                        "</td><td>" + record['Period'] +
+                        "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
+                    table.appendChild(tr);
+                    break;
                 }
+
+
+            }
 
 
         }
 
-        function renewMembership()
-        {
-            type = document.getElementById('inputDuration').value ;
-            period = document.getElementById('inputPeriod').value ;
-            startDate = ( $('#inputStartDate').datepicker().value() ) ;
+        function renewMembership() {
+            type = document.getElementById('inputDuration').value;
+            period = document.getElementById('inputPeriod').value;
+            startDate = ($('#inputStartDate').datepicker().value());
 
         }
     </script>

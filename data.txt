@@ -1,0 +1,52 @@
+{
+	"name" : "Tarek Hassan",
+	"id" : "17108779",
+	"phone" : "01000000000",
+	"address" : "Qena",
+	"gender" : "Male",
+	"membershiptype" : "Semesterly",
+	"period" : "3:30 PM",
+	"startdate" : "2021-02-15",
+	"isstudent" : true,
+	"student" : {"semester" : "7", "college" : "CCIT", "department" : "CS"}
+}
+
+
+{
+	"name" : "Mohamed Ramadan",
+	"id" : "17108770",
+	"phone" : "0120000000",
+	"address" : "Sohag",
+	"gender" : "Male",
+	"membershiptype" : "Monthly",
+	"period" : "8:30 AM",
+	"startdate" : "2021-02-15",
+	"isstudent" : true,
+	"student" : {"semester" : "7", "college" : "CCIT", "department" : "CS"}
+}
+{
+	"name" : "Karim Nasser",
+	"id" : "20010030",
+	"phone" : "01100000000",
+	"address" : "Masnoura",
+	"gender" : "Male",
+	"membershiptype" : "Semesterly",
+	"period" : "3:30 PM",
+	"startdate" : "2021-02-15",
+	"isstudent" : false,
+	"staff" : {"position" : "Lecturer at Computing"}
+}
+
+
+{
+	"name" : "Omar Alaa",
+	"id" : "20010050",
+	"phone" : "0150000000",
+	"address" : "Alexandria",
+	"gender" : "Male",
+	"membershiptype" : "Monthly",
+	"period" : "8:30 AM",
+	"startdate" : "2021-02-15",
+	"isstudent" : false,
+	"staff" : {"position" : "Lecturer at Engineering"}
+}

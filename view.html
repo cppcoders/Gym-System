@@ -7,29 +7,32 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <style>
-        nav{
+        nav {
             padding: 20px;
             display: flex;
             justify-content: space-between;
-            box-shadow: 3px 10px 17px -15px rgba(0,0,0,0.48);
+            box-shadow: 3px 10px 17px -15px rgba(0, 0, 0, 0.48);
         }
-        a, a:hover{
+
+        a,
+        a:hover {
             color: black;
             text-decoration: none;
         }
 
-        .search{
-            margin:50px  0px;
+        .search {
+            margin: 50px 0px;
             display: flex;
             justify-content: center;
         }
-        .search select{
-            margin: 0px 15px ;
+
+        .search select {
+            margin: 0px 15px;
         }
-        .table{
-            text-align: center; 
+
+        .table {
+            text-align: center;
         }
-        
     </style>
 
 </head>
@@ -37,7 +40,7 @@
 <body>
 
     <nav>
-        <a href="Home.html"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
+        <a href="Home"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
         <img src="static/AASTL.png" style="width: 100px; height: 100px;">
         <a href="#"><img src="static/setting2.png" style="width: 80px;height: 80px;"></a>
     </nav>
@@ -45,7 +48,7 @@
     <div class="search">
         <form class="form-inline">
             <input class="form-control mr-sm-2" type="ID" placeholder="ID" aria-label="ID">
-            
+
             <input class="form-control mr-sm-2" type="name" placeholder="name" aria-label="name">
 
             <select class="form-control" id="inputDuration">
@@ -75,23 +78,23 @@
                 <option>Active</option>
                 <option>Not Active</option>
             </select>
-            
-            <button class="btn btn-success my-2 my-sm-0" type="button" onclick="update()" >View</button>
+
+            <button class="btn btn-success my-2 my-sm-0" type="button" onclick="update()">View</button>
         </form>
     </div>
 
     <div class="table-responsive">
         <table class="table table-hover">
             <thead class="thead-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Membership Type</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Period</th>
-                <th scope="col">Status</th>
-                
-            </tr>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Membership Type</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Period</th>
+                    <th scope="col">Status</th>
+
+                </tr>
             </thead>
             <tbody id="tbody">
             </tbody>
@@ -109,35 +112,50 @@
         crossorigin="anonymous"></script>
 
     <script>
-        var dict = [
-                { ID:   "17108644",
-                  Name: "Tarek",
-                  Membership_type: "Monthly",
-                  Gender: "Male" ,
-                  Period: "8:30 am",
-                  Status: "Active"
-                } 
-        ];
-
-        function update()
-        {
-            var table = document.getElementById('tbody') ;
-            for (let i = 0; i < dict.length ; i++) {
+        var dict = [];
+        fetch('/members')
+            .then(function (response) {
+                return response.json();// convert it to a pure JavaScript object
+            })
+            .then(function (data) {
+                //Process Your data  
+                for (let i = 0; i < data.length; i++) {
+                    var last = Date.parse(data[i].enddate);
+                    var today = Date.now();
+                    var st = "Not Active";
+                    if (last > today)
+                        st = "Active";
+                    dict.push({
+                        ID: data[i].id,
+                        Name: data[i].name,
+                        Membership_type: data[i].membershiptype,
+                        Gender: data[i].gender,
+                        Period: data[i].period,
+                        Status: st
+                    })
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+        function update() {
+            var table = document.getElementById('tbody');
+            for (let i = 0; i < dict.length; i++) {
                 var record = dict[i];
-                tr = document.createElement('tr') ;
-                var Status_color ;
-                if(record["Status"] == "Not Active")
-                    Status_color = "rgb(180,0,0);" ;
+                tr = document.createElement('tr');
+                var Status_color;
+                if (record["Status"] == "Not Active")
+                    Status_color = "rgb(180,0,0);";
                 else
                     Status_color = "rgb(0,100,0);"
-                tr.innerHTML = 
-                "<th scope='row'>" + record['ID'] + 
-                "</th><td>" + record['Name'] +
-                "</td><td>" + record['Membership_type'] + 
-                "</td><td>"+ record['Gender'] + 
-                "</td><td>"+record['Period'] + 
-                "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>"+ record['Status'] + "</p> </td>"
-                table.appendChild(tr) ;
+                tr.innerHTML =
+                    "<th scope='row'>" + record['ID'] +
+                    "</th><td>" + record['Name'] +
+                    "</td><td>" + record['Membership_type'] +
+                    "</td><td>" + record['Gender'] +
+                    "</td><td>" + record['Period'] +
+                    "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
+                table.appendChild(tr);
             }
         }
 

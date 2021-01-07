@@ -8,18 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 
     <style>
-
-        nav{
+        nav {
             padding: 20px;
             display: flex;
             justify-content: space-between;
-            box-shadow: 3px 10px 17px -15px rgba(0,0,0,0.48);
+            box-shadow: 3px 10px 17px -15px rgba(0, 0, 0, 0.48);
         }
+
         .main {
             display: flex;
             justify-content: space-between;
             width: 70%;
-            margin: 8% auto ;
+            margin: 8% auto;
         }
 
         .left {
@@ -27,77 +27,80 @@
             justify-content: space-between;
 
         }
-        .right
-        {
+
+        .right {
             display: flex;
             justify-content: space-between;
         }
 
-        .card{
-            margin: 20px ;
-            box-shadow: -1px 2px 24px 0px rgba(89,89,89,0.43);
+        .card {
+            margin: 20px;
+            box-shadow: -1px 2px 24px 0px rgba(89, 89, 89, 0.43);
         }
-        .card-text{
+
+        .card-text {
             font-size: 1.5em;
         }
 
-        a, a:hover{
+        a,
+        a:hover {
             color: black;
             text-decoration: none;
         }
 
-        .stats{
+        .stats {
             width: 600px;
             padding: 50px;
             font-size: xx-large
         }
-        .stats-top p{
-            font-size: 0.6em; margin-left: 15px;
+
+        .stats-top p {
+            font-size: 0.6em;
+            margin-left: 15px;
         }
 
-        .stats-top p span{
+        .stats-top p span {
             font-weight: bold;
         }
 
-        .stats-bottom{
+        .stats-bottom {
             padding: 50px 50px 0px 50px;
             text-align: center;
         }
 
-        .cont{
+        .cont {
             width: 150px;
         }
-        .main .card:hover .card-body{
+
+        .main .card:hover .card-body {
             background: cornflowerblue;
             color: white;
         }
-
-        
     </style>
 </head>
 
 <body>
     <nav>
-        <a href="Home.html"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
-        <img src="static/AASTL.png" style="width: 100px; height: 100px;">
-        <a href="#"><img src="static/setting2.png" style="width: 80px;height: 80px;"></a>
+        <a href="/Home"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
+        <img src="/static/AASTL.png" style="width: 100px; height: 100px;">
+        <a href="#"><img src="/static/setting2.png" style="width: 80px;height: 80px;"></a>
     </nav>
 
     <div class="main">
         <div class="left" style="margin-top: 80px;">
 
             <div class="top">
-                <a href="check.html">
+                <a href="/check">
                     <div class="card" style="width: 16rem;">
-                        <img class="card-img-top" src="static/check.png" alt="Card image cap">
+                        <img class="card-img-top" src="/static/check.png" alt="Card image cap">
                         <div class="card-body">
                             <p class="card-text">Check ID</p>
                         </div>
                     </div>
                 </a>
-                <a href="renew.html">
+                <a href="/renew">
                     <div class="card" style="width: 16rem;">
-                        <img class="card-img-top" src="static/renew.png" alt="Card image cap">
+                        <img class="card-img-top" src="/static/renew.png" alt="Card image cap">
                         <div class="card-body">
                             <p class="card-text">Renew registration</p>
                         </div>
@@ -106,18 +109,18 @@
             </div>
 
             <div class="bottom">
-                <a href="registeration.html">
+                <a href="/registeration">
                     <div class="card" style="width: 16rem;">
-                        <img class="card-img-top" src="static/new.png" alt="Card image cap">
+                        <img class="card-img-top" src="/static/new.png" alt="Card image cap">
                         <div class="card-body">
                             <p class="card-text">Add registration</p>
                         </div>
                     </div>
                 </a>
 
-                <a href = "view.html">
+                <a href="/view">
                     <div class="card" style="width: 16rem;">
-                        <img class="card-img-top" src="static/members.png" alt="Card image cap">
+                        <img class="card-img-top" src="/static/members.png" alt="Card image cap">
                         <div class="card-body">
                             <p class="card-text">View members</p>
                         </div>
@@ -129,19 +132,20 @@
 
         <div class="right">
 
-            <div class="card">  
+            <div class="card">
                 <div class="stats">
                     <div class="stats-top">
-                        <iframe src="http://free.timeanddate.com/clock/i7me27m3/n4628/fs48/ts1" frameborder="0" width="200px" height="65"></iframe>
+                        <iframe src="http://free.timeanddate.com/clock/i7me27m3/n4628/fs48/ts1" frameborder="0"
+                            width="200px" height="65"></iframe>
                         <p><span>Night Shift</span></p>
                         <p>Receptionist: <span id="ReceptionistName"> Haitham</span></p>
                         <p>Coach: <span id="CoachName">Ahmed</span></p>
 
                     </div>
-                <hr>
-                <p style="text-align: center; margin: 0px;">Period stats</p>
+                    <hr>
+                    <p style="text-align: center; margin: 0px;">Period stats</p>
                     <div class="stats-bottom">
-                        
+
                         <div class="left">
 
                             <div class="top">
@@ -149,9 +153,9 @@
                                     <p style="font-size: 2em">M</p>
                                     <p>Gender </p>
                                 </div>
-                                
+
                             </div>
-                
+
                             <div class="bottom">
                                 <div class="cont">
                                     <p style="font-size: 2em">8:30</p>
@@ -159,7 +163,7 @@
                                 </div>
 
                             </div>
-                
+
                         </div>
 
                         <div class="right">
@@ -169,7 +173,7 @@
                                     <p>current </p>
                                 </div>
                             </div>
-                
+
                             <div class="bottom">
                                 <div class="cont">
                                     <p style="font-size: 2em">20</p>
@@ -182,17 +186,17 @@
                 </div>
             </div>
 
-    </div>
+        </div>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
 </body>

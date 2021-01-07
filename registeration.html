@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    
+
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
@@ -19,8 +19,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-        
-        
+
+
     <style>
         nav {
             padding: 20px;
@@ -69,7 +69,7 @@
 <body>
 
     <nav>
-        <a href="Home.html"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
+        <a href="Home"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
         <img src="static/AASTL.png" style="width: 100px; height: 100px;">
         <a href="#"><img src="static/setting2.png" style="width: 80px;height: 80px;"></a>
     </nav>
@@ -84,107 +84,103 @@
 
 
     <div class="student-data cont" id="student-data">
-        <form>
+        <form id="form1" action="/members" method="POST">
             <div class="row">
                 <div class="form-group col-12">
-                    <input type="name" class="form-control" id="inputName" name="inputName" placeholder="Name">
+                    <input type="name" class="form-control" id="inputName" name="name" placeholder="Name">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-6">
-                    <input type="id" class="form-control" id="inputID" name="inputID" placeholder="ID">
+                    <input type="id" class="form-control" id="inputID" name="id" placeholder="ID">
                 </div>
                 <div class="form-group col-6">
-                    <input type="phone" class="form-control" id="inputPhone" name="inputPhone" placeholder="Phone">
+                    <input type="phone" class="form-control" id="inputPhone" name="phone" placeholder="Phone">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-12">
-                    <input type="Address" class="form-control" id="inputAddress" name="inputAddress" placeholder="Adress">
+                    <input type="Address" class="form-control" id="address" name="address" placeholder="Adress">
                 </div>
             </div>
 
 
             <div class="row">
                 <div class="form-group col-6">
-                    <select class="form-control" id="inputGender" name = "inputGender">
-                        <option selected>Gender...</option>
-                        <option>Male</option>
-                        <option>Female</option>
+                    <select class="form-control" id="inputGender" name="gender">
+                        <option value="" selected>Gender...</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                     </select>
                 </div>
                 <div class="form-group col-6">
-                    <select class="form-control" id="inputSemester" name = "inputSemester">
-                        <option selected>Semester</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-6">
-                    <select class="form-control" id="inputCollege" name = "inputCollege">
-                        <option selected>College...</option>
-                        <option>Computing & information</option>
-                        <option>Engineering</option>
-                        <option>Business</option>
-                        <option>Logistics</option>
-                    </select>
-                </div>
-                <div class="form-group col-6">
-                    <select class="form-control" id="inputDepartment" name="inputDepartment">
-                        <option selected>Department...</option>
-                        <option>Computer Science</option>
-                        <option>Architecture</option>
-                        <option>Adminstration</option>
-                        <option>Logistics</option>
-                    </select>
-                </div>
-
-            </div>
-
-
-            <div class="row">
-                <div class="form-group col-6">
-                    <select class="form-control" id="inputMembership" name="inputDuration">
-                        <option selected value="0">Membership Type...</option>
-                        <option value = "120">Semesterly</option>
-                        <option value = "30">Monthly</option>
-                        <option value = "1" >Daily</option>
-                    </select>
-                </div>
-                <div class="form-group col-6">
-                    <select class="form-control" id="inputPeriod" name="inputPeriod">
-                        <option selected>Period...</option>
-                        <option>8:30 am</option>
-                        <option>10:30 am</option>
-                        <option>12:30 pm</option>
-                        <option>3:30 pm</option>
-                        <option>5:30 pm</option>
+                    <select class="form-control" id="inputSemester" name="semester">
+                        <option value="" selected>Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                     </select>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-6">
-                    <label>Registration Date</label>
-                    <input class="RegDate1" id="studentInputRegDate" name="studentInputRegDate" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" >
+                    <select class="form-control" id="inputCollege" name="college">
+                        <option value="" selected>College...</option>
+                        <option value="Computing & information">Computing & information</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Business">Business</option>
+                        <option value="Logistics">Logistics</option>
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    <select class="form-control" id="inputDepartment" name="department">
+                        <option value="" selected>Department...</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Adminstration">Adminstration</option>
+                        <option value="Logistics">Logistics</option>
+                    </select>
                 </div>
 
+            </div>
+
+
+            <div class="row">
                 <div class="form-group col-6">
+                    <select class="form-control" id="inputMembership" name="membershiptype">
+                        <option selected value="">Membership Type...</option>
+                        <option value="Semesterly">Semesterly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Daily">Daily</option>
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    <select class="form-control" id="inputPeriod" name="period">
+                        <option value="" selected>Period...</option>
+                        <option value="08:30 AM">08:30 AM</option>
+                        <option value="10:30 AM">10:30 AM</option>
+                        <option value="12:30 PM">12:30 PM</option>
+                        <option value="03:30 PM">03:30 PM</option>
+                        <option value="05:30 PM">05:30 PM</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-12">
                     <label>Start date</label>
-                    <input class="StartDate1" id="studentInputStartDate" name="studentInputStartDate" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" >
+                    <input class="StartDate1" id="studentInputStartDate" name="startdate" data-date-format="yyyy-mm-dd"
+                        placeholder="yyyy-mm-dd">
                 </div>
 
             </div>
@@ -197,83 +193,79 @@
 
 
     <div class="staff-data cont" id="staff-data">
-        <form>
+        <form id="form2" action="/members" method="POST">
             <div class="row">
                 <div class="form-group col-12">
-                    <input type="name" class="form-control" id="inputName" name="inputName" placeholder="Name">
+                    <input type="name" class="form-control" id="inputName" name="name" placeholder="Name">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-6">
-                    <input type="id" class="form-control" id="inputID" name = "inputID"placeholder="ID">
+                    <input type="id" class="form-control" id="inputID" name="id" placeholder="ID">
                 </div>
                 <div class="form-group col-6">
-                    <input type="phone" class="form-control" id="inputPhone"name="inputPhone" placeholder="Phone">
+                    <input type="phone" class="form-control" id="inputPhone" name="phone" placeholder="Phone">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-12">
-                    <input type="Address" class="form-control" id="inputAddress"name="inputAddress" placeholder="Adress">
+                    <input type="Address" class="form-control" id="inputAddress" name="address" placeholder="Adress">
                 </div>
             </div>
 
 
             <div class="row">
                 <div class="form-group col-12">
-                    <select class="form-control" id="inputGender"name="inputGender">
-                        <option selected>Gender...</option>
-                        <option>Male</option>
-                        <option>Female</option>
+                    <select class="form-control" id="inputGender" name="gender">
+                        <option value="" selected>Gender...</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                     </select>
                 </div>
 
                 <div class="form-group col-12">
-                    <select class="form-control" id="inputPosition" name="inputPosition">
-                        <option selected>Position...</option>
-                        <option>Adminstration</option>
-                        <option>Management</option>
-                        <option>Professor</option>
-                        <option>Teacher Assistant</option>
-                        <option>Security</option>
-                        <option>Cleaning</option>
+                    <select class="form-control" id="inputPosition" name="position">
+                        <option value="" selected>Position...</option>
+                        <option value="Adminstration">Adminstration</option>
+                        <option value="Management">Management</option>
+                        <option value="Professor">Professor</option>
+                        <option value="Teacher Assistant">Teacher Assistant</option>
+                        <option value="Security">Security</option>
+                        <option value="Cleaning">Cleaning</option>
                     </select>
                 </div>
-                
+
             </div>
 
 
             <div class="row">
                 <div class="form-group col-6">
-                    <select class="form-control" id="inputDuration" name="inputDuration">
-                        <option selected>Membership Type...</option>
-                        <option>Semesterly</option>
-                        <option>Monthly</option>
-                        <option>Daily</option>
+                    <select class="form-control" id="inputDuration" name="membershiptype">
+                        <option selected value="">Membership Type...</option>
+                        <option value="Semesterly">Semesterly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Daily">Daily</option>
                     </select>
                 </div>
                 <div class="form-group col-6">
-                    <select class="form-control" id="inputPeriod" name="inputPeriod">
-                        <option selected>Period...</option>
-                        <option>8:30 am</option>
-                        <option>10:30 am</option>
-                        <option>12:30 pm</option>
-                        <option>3:30 pm</option>
-                        <option>5:30 pm</option>
+                    <select class="form-control" id="inputPeriod" name="period">
+                        <option value="" selected>Period...</option>
+                        <option value="08:30 AM">08:30 AM</option>
+                        <option value="10:30 AM">10:30 AM</option>
+                        <option value="12:30 PM">12:30 PM</option>
+                        <option value="03:30 PM">03:30 PM</option>
+                        <option value="05:30 PM">05:30 PM</option>
                     </select>
                 </div>
             </div>
 
             <div class="row">
-                <div class="form-group col-6">
-                    <label>Registration Date</label>
-                    <input class="RegDate2" id="staffInputRegDate" name="inputRegDate" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
-                </div>
-
-                <div class="form-group col-6">
+                <div class="form-group col-12">
                     <label>Start date</label>
-                    <input class="StartDate2" id="staffInputStartDate" name="inputStartDate" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" >
+                    <input class="StartDate2" id="staffInputStartDate" name="startdate" data-date-format="yyyy-mm-dd"
+                        placeholder="yyyy-mm-dd">
                 </div>
 
             </div>
@@ -285,37 +277,73 @@
     </div>
 
 
-    
+
 
 
     <script type="text/javascript">
+        function convertFormToJSON(form) {
+            var array = $(form).serializeArray();
+            var json = {};
+
+            $.each(array, function () {
+                json[this.name] = this.value || '';
+            });
+            json["isstudent"] = false
+            if (isstud == 1) {
+                json["student"] = { "college": json["college"], "semester": json["semester"], "department": json["department"] }
+                json["isstudent"] = true
+            }
+            else
+                json["staff"] = { "position": json["position"] }
+            delete json["college"];
+            delete json["semester"];
+            delete json["department"];
+            delete json["position"];
+            return json;
+        }
+
+        /* Adds a new form to the body of a page with the JSON data encoded into it */
+        function submitAsJSON(form) {
+            var JSONString = JSON.stringify(convertFormToJSON(form)),
+                HackyJSONString = JSONString.slice(0, -1) + ', "trash": "';
+
+            var hackyForm = "<form method='POST'  enctype='text/plain' action='" + $(form).attr('action') + "'>" +
+                "<input name='" + HackyJSONString + "' value='\"}'>" +
+                "</form>"
+            $(hackyForm).appendTo('body').submit();
+        }
 
         $('.RegDate1').datepicker({
-            format: 'mm/dd/yyyy',
+            format: 'yyyy-mm-dd',
             startDate: '-3d',
             disableDaysOfWeek: [5]
         });
 
         $('.StartDate1').datepicker({
-            format: 'mm/dd/yyyy',
+            format: 'yyyy-mm-dd',
             startDate: '-3d',
             disableDaysOfWeek: [5]
         });
         $('.RegDate2').datepicker({
-            format: 'mm/dd/yyyy',
+            format: 'yyyy-mm-dd',
             startDate: '-3d',
             disableDaysOfWeek: [5]
         });
 
         $('.StartDate2').datepicker({
-            format: 'mm/dd/yyyy',
+            format: 'yyyy-mm-dd',
             startDate: '-3d',
             disableDaysOfWeek: [5]
         });
 
-
+        $("form").submit(function (event) {
+            event.preventDefault();
+            submitAsJSON(this);
+        });
+        var isstud = 1;
         function toggle_visibility(id) {
             if (id === 'student-data') {
+                isstud = 1;
                 var e = document.getElementById('staff-data');
                 e.style.display = 'none';
                 var b = document.getElementById('staff');
@@ -329,6 +357,7 @@
                 b.classList.add('btn-primary');
             }
             else if (id == 'staff-data') {
+                isstud = 0;
                 var e = document.getElementById('student-data');
                 e.style.display = 'none';
                 var b = document.getElementById('student');

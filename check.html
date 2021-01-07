@@ -40,7 +40,7 @@
 <body>
 
     <nav>
-        <a href="Home.html"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
+        <a href="Home"><span style="font-size: 2em;line-height: 3;font-weight: bold;">Dashboard</span></a>
         <img src="static/AASTL.png" style="width: 100px; height: 100px;">
         <a href="#"><img src="static/setting2.png" style="width: 80px;height: 80px;"></a>
     </nav>
@@ -80,59 +80,63 @@
         Member can't be entered because memebership ended</p>
 
     <script type="text/javascript">
-
-        var dict = [
-            {
-                ID: "17108644",
-                Name: "Tarek",
-                Membership_type: "Monthly",
-                Gender: "Male",
-                Period: "8:30 am",
-                Status: "Not Active"
-            },
-            {
-                ID: "17108655",
-                Name: "Mohammed",
-                Membership_type: "Semestrly",
-                Gender: "Male",
-                Period: "10:30 am",
-                Status: "Active"
-            }
-        ];
-
+        var mem = {};
+        var ID;
         function checkID() {
+            ID = document.getElementById('inputID').value;
+            fetch("/members/" + ID)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var last = Date.parse(data.enddate);
+                    var today = Date.now();
+                    var st = "Not Active";
+                    if (last > today)
+                        st = "Active";
+                    mem = {
+                        ID: data.id,
+                        Name: data.name,
+                        Membership_type: data.membershiptype,
+                        Gender: data.gender,
+                        Period: data.period,
+                        Status: st
+                    }
 
+
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
             var b = document.getElementById('Member_Rejected');
             b.style.display = 'none';
             var b = document.getElementById('Member_Accepted');
             b.style.display = 'none';
 
-            var ID = document.getElementById('inputID').value;
-            if (ID !== "") {
+            if (Object.keys(mem).length > 0) {
                 var table = document.getElementById('tbody');
-                for (let i = 0; i < dict.length; i++) {
-                    var record = dict[i];
 
-                    if(table.childNodes.length != 0 )
-                        table.removeChild(table.childNodes[0]);
+                var record = mem;
 
-                    if (record["ID"] == ID) {
-                        tr = document.createElement('tr');
-                        var Status_color;
-                        if (record["Status"] == "Not Active")
-                            Status_color = "rgb(180,0,0);";
-                        else
-                            Status_color = "rgb(0,100,0);"
-                        tr.innerHTML =
-                            "<th scope='row'>" + record['ID'] +
-                            "</th><td>" + record['Name'] +
-                            "</td><td>" + record['Membership_type'] +
-                            "</td><td>" + record['Gender'] +
-                            "</td><td>" + record['Period'] +
-                            "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
-                        table.appendChild(tr);
-                        break;
-                    }
+                if (table.childNodes.length != 0)
+                    table.removeChild(table.childNodes[0]);
+
+                if (record["ID"] == ID) {
+                    tr = document.createElement('tr');
+                    var Status_color;
+                    if (record["Status"] == "Not Active")
+                        Status_color = "rgb(180,0,0);";
+                    else
+                        Status_color = "rgb(0,100,0);"
+                    tr.innerHTML =
+                        "<th scope='row'>" + record['ID'] +
+                        "</th><td>" + record['Name'] +
+                        "</td><td>" + record['Membership_type'] +
+                        "</td><td>" + record['Gender'] +
+                        "</td><td>" + record['Period'] +
+                        "</td><td> <p style='color:" + Status_color + " font-weight: bold;'>" + record['Status'] + "</p> </td>"
+                    table.appendChild(tr);
+
 
 
                 }
@@ -140,24 +144,24 @@
         }
 
         function enterMember() {
-            var ID = document.getElementById('inputID').value;
-            for (let i = 0; i < dict.length; i++) {
-                var record = dict[i];
-                if (record["ID"] == ID) {
-                    if (record["Status"] == "Active") {
-                        var b = document.getElementById('Member_Rejected');
-                        b.style.display = 'none';
-                        b = document.getElementById('Member_Accepted');
-                        b.style.display = 'block';
-                    }
-                    else if (record["Status"] == "Not Active") {
-                        var b = document.getElementById('Member_Accepted');
-                        b.style.display = 'none';
-                        b = document.getElementById('Member_Rejected');
-                        b.style.display = 'block';
-                    }
+            ID = document.getElementById('inputID').value;
+
+            var record = mem;
+            if (Object.keys(mem).length > 0) {
+                if (record["Status"] == "Active") {
+                    var b = document.getElementById('Member_Rejected');
+                    b.style.display = 'none';
+                    b = document.getElementById('Member_Accepted');
+                    b.style.display = 'block';
+                }
+                else if (record["Status"] == "Not Active") {
+                    var b = document.getElementById('Member_Accepted');
+                    b.style.display = 'none';
+                    b = document.getElementById('Member_Rejected');
+                    b.style.display = 'block';
                 }
             }
+
 
 
         }
