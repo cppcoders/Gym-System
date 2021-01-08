@@ -1,14 +1,19 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"time"
 
+	_ "github.com/mattn/go-sqlite3"
+
 	"github.com/gorilla/mux"
 )
+
+var db *sql.DB
 
 // Member Struct
 type Member struct {
@@ -78,6 +83,21 @@ func createMember(w http.ResponseWriter, r *http.Request) {
 		member.Student = StudentExtras{}
 	}
 	Members = append(Members, member)
+	if member.IsStudent == false {
+		_, err := db.Exec("INSERT INTO staff VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", member.Name, member.ID, member.Address, member.Gender, member.MembershipType, member.Period, member.StartDate, member.EndDate, member.Phone, member.Staff.Position)
+		if err != nil {
+			fmt.Println(err)
+			http.Error(w, "Server error, unable to create.", 500)
+			return
+		}
+	} else {
+		_, err := db.Exec("INSERT INTO student VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", member.Name, member.ID, member.Address, member.Gender, member.MembershipType, member.Period, member.StartDate, member.EndDate, member.Phone, member.Student.Semester, member.Student.College, member.Student.Department)
+		if err != nil {
+			fmt.Println(err)
+			http.Error(w, "Server error, unable to create.", 500)
+			return
+		}
+	}
 	w.Write([]byte("Member Registered Successfully!"))
 }
 func updateMember(w http.ResponseWriter, r *http.Request) {
@@ -106,6 +126,28 @@ func updateMember(w http.ResponseWriter, r *http.Request) {
 
 }
 func main() {
+	db, _ = sql.Open("sqlite3", "./db.db")
+	defer db.Close()
+
+	//------------------------------------
+	rows, _ := db.Query("select * from student")
+	var member Member
+	for rows.Next() {
+		member.IsStudent = true
+		member.Student = StudentExtras{}
+		member.Staff = StaffExtras{}
+		rows.Scan(&member.Name, &member.ID, &member.Address, &member.Gender, &member.MembershipType, &member.Period, &member.StartDate, &member.EndDate, &member.Phone, &member.Student.Semester, &member.Student.College, &member.Student.Department)
+		Members = append(Members, member)
+	}
+	rows2, _ := db.Query("select * from staff")
+	for rows2.Next() {
+		member.IsStudent = false
+		member.Student = StudentExtras{}
+		member.Staff = StaffExtras{}
+		rows2.Scan(&member.Name, &member.ID, &member.Address, &member.Gender, &member.MembershipType, &member.Period, &member.StartDate, &member.EndDate, &member.Phone, &member.Staff.Position)
+		Members = append(Members, member)
+	}
+	//------------------------------------
 	r := mux.NewRouter()
 	r.HandleFunc("/members", getMembers).Methods("GET")
 	r.HandleFunc("/members", createMember).Methods("POST")
